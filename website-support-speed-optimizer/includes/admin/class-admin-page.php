@@ -75,6 +75,9 @@ class Admin_Page {
     public function render_page(): void {
         $options = $this->settings->get_all();
         $cache_cleared = isset($_GET['cache_cleared']);
+        $cache_size = $this->settings->get_cache_size();
+        $cache_count = $this->settings->get_cache_file_count();
+        $last_clear = $this->settings->get_last_cache_clear();
         ?>
         <div class="wrap hbs-pso-admin">
             <h1>Website Support Speed Optimizer</h1>
@@ -85,11 +88,26 @@ class Admin_Page {
             
             <div class="hbs-pso-header">
                 <p>Performance optimization targeting Core Web Vitals: TTFB, FCP, LCP, and CLS.</p>
-                <form method="post" action="<?php echo admin_url('admin-post.php'); ?>" style="display:inline;">
-                    <?php wp_nonce_field('hbs_pso_clear_cache'); ?>
-                    <input type="hidden" name="action" value="hbs_pso_clear_cache">
-                    <button type="submit" class="button">Clear Cache</button>
-                </form>
+                <div class="hbs-pso-cache-actions">
+                    <span class="hbs-pso-cache-stats">
+                        <span class="hbs-pso-cache-stat">
+                            <strong><?php echo esc_html($cache_count); ?></strong> cached pages
+                        </span>
+                        <span class="hbs-pso-cache-stat">
+                            <strong><?php echo esc_html($this->settings->format_size($cache_size)); ?></strong>
+                        </span>
+                        <?php if ($last_clear): ?>
+                        <span class="hbs-pso-cache-stat hbs-pso-cache-cleared">
+                            Last cleared: <strong><?php echo esc_html(human_time_diff($last_clear, time()) . ' ago'); ?></strong>
+                        </span>
+                        <?php endif; ?>
+                    </span>
+                    <form method="post" action="<?php echo admin_url('admin-post.php'); ?>" style="display:inline;">
+                        <?php wp_nonce_field('hbs_pso_clear_cache'); ?>
+                        <input type="hidden" name="action" value="hbs_pso_clear_cache">
+                        <button type="submit" class="button">Clear Cache</button>
+                    </form>
+                </div>
             </div>
             
             <form method="post" action="options.php">

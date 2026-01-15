@@ -80,3 +80,30 @@
     color: #646970;
     margin-top: 5px;
 }
+
+.hbs-pso-cache-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.hbs-pso-cache-stats {
+    display: flex;
+    gap: 15px;
+    font-size: 13px;
+    color: #50575e;
+}
+
+.hbs-pso-cache-stat {
+    padding-right: 15px;
+    border-right: 1px solid #ccd0d4;
+}
+
+.hbs-pso-cache-stat:last-of-type {
+    border-right: none;
+    padding-right: 0;
+}
+
+.hbs-pso-cache-stat strong {
+    color: #1d2327;
+}

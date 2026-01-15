@@ -15,7 +15,7 @@ class Image_Optimizer implements Optimizer {
     }
 
     public function init(): void {
-        if (is_admin()) {
+        if (is_admin() || Settings::is_page_builder_context()) {
             return;
         }
 

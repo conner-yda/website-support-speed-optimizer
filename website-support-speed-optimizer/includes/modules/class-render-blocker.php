@@ -27,7 +27,7 @@ class Render_Blocker implements Optimizer {
     }
 
     public function init(): void {
-        if (is_admin() || (defined('DOING_AJAX') && DOING_AJAX)) {
+        if (is_admin() || (defined('DOING_AJAX') && DOING_AJAX) || Settings::is_page_builder_context()) {
             return;
         }
 

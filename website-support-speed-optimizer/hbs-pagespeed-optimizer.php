@@ -3,7 +3,7 @@
  * Plugin Name: Website Support Speed Optimizer
  * Plugin URI: #
  * Description: Performance optimization plugin targeting TTFB, FCP, LCP, and CLS metrics.
- * Version: 1.0.4
+ * Version: 1.0.5
  * Author: Website Support
  * License: GPL-2.0+
  * Text Domain: website-support
@@ -11,7 +11,7 @@
 
 defined('ABSPATH') || exit;
 
-define('HBS_PSO_VERSION', '1.0.4');
+define('HBS_PSO_VERSION', '1.0.5');
 define('HBS_PSO_PATH', plugin_dir_path(__FILE__));
 define('HBS_PSO_URL', plugin_dir_url(__FILE__));
 define('HBS_PSO_CACHE_DIR', WP_CONTENT_DIR . '/cache/website-support-speed/');

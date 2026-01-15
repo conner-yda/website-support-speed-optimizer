@@ -33,7 +33,7 @@ class Page_Cache implements Optimizer {
     }
 
     private function should_skip_cache(): bool {
-        if (is_admin()) {
+        if (is_admin() || Settings::is_page_builder_context()) {
             return true;
         }
 
